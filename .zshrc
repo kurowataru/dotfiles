@@ -138,7 +138,7 @@ alias ll='ls -l'
 alias rr='rm -rf'
 alias lla='ls -l -a'
 alias -s java='runjava'
-alias su='su -'
+alias su='su -s /bin/zsh'
 
 # cdコマンド実行後、lsを実行する
 function cd() {
