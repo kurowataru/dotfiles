@@ -1,30 +1,28 @@
 "" Bundle
+set nocompatible
+filetype off
+
 if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 
 "let g:neobundle_default_git_protocol='https'
 
 "" Plugin
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : ' make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ }
-\ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'chriskempson/tomorrow-theme'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 
-filetype plugin indent on
 NeoBundleCheck                  " 新しいPluginをvim起動時に自動でインストール
+filetype plugin indent on
 
 "" General
 syntax on
@@ -41,10 +39,18 @@ set backspace=start,eol,indent  " Backspace による消去を有効にする
   " eol    : 開業を削除可能にする
   " indent : インデントを削除可能にする
 set whichwrap=b,s,[,],,~        " カーソルキーによる行末の移動を有効にする
+augroup auto_comment_off
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=r
+  autocmd BufEnter * setlocal formatoptions-=o
+augroup END
 " 括弧等を自動補完する
 ""inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
+inoremap { {}<LEFT>
+inoremap {<Enter> {}<LEFT><CR><ESC><S-o>
+inoremap $ $$<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 vnoremap { "zdi^V{<C-R>z}<ESC>
@@ -59,10 +65,9 @@ set matchtime=2               " 括弧のハイライトを2秒にする
 set cursorline                " カレントラインをハイライト表示する
 set showcmd                   " 画面下部にコマンドを表示
 set wildmenu                  " コマンドラインモードの補完を有効にする
-colorscheme Tomorrow-Night-Bright
-"colorscheme hybrid
-"colorscheme hybrid
+"colorscheme Tomorrow-Night-Bright
 set background=dark           " 背景を暗くする
+let g:hybrid_use_Xresources = 1
 
 "" Backup
 set backup
@@ -78,15 +83,67 @@ set shiftwidth=2                " 自動インデントの幅を半角スペー�
 
 "" lightline
 let g:lightline = {
-    \ 'colorscheme' : 'landscape',
-    \ 'active': {
-    \   'left': [
-    \       ['mode'. 'paste'],
-    \       ['readonly', 'filename', 'modified']
-    \   ]
-    \ }
-    \ }
+        \ 'colorscheme': 'landscape',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode'
+        \ }
+        \ }
+
+function! MyModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+  
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+    
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
 set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
+colorscheme hybrid " カラースキーム適用のため最後に記述
