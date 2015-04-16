@@ -6,6 +6,7 @@
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
+export LC_MESSAGES=C     # エラーメッセージを英語で表示
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 
 #bindkey -e               # キーバインドをemacsモードに設定
@@ -131,14 +132,20 @@ function runjava () {
 ### Aliases ###
 alias r=rails
 alias vi=vim
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 alias gr='cd `git rev-parse --show-toplevel`'
 alias gitlog='git log-all | less -R'
+alias ls='ls -F'
 alias la='ls -a'
 alias ll='ls -l'
-alias rr='rm -rf'
+alias rr='rm -rv'
 alias lla='ls -l -a'
 alias -s java='runjava'
 alias su='su -s /bin/zsh'
+alias opendir='nautilus'
+alias openfile='gnome-open'
 
 # cdコマンド実行後、lsを実行する
 function cd() {
@@ -163,3 +170,4 @@ export PATH=/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/bin:$PATH
+export PATH=~/local/src/depot_tools:$PATH
