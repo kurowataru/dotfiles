@@ -66,7 +66,6 @@ set matchtime=2               " 括弧のハイライトを2秒にする
 set cursorline                " カレントラインをハイライト表示する
 set showcmd                   " 画面下部にコマンドを表示
 set wildmenu                  " コマンドラインモードの補完を有効にする
-"colorscheme Tomorrow-Night-Bright
 set background=dark           " 背景を暗くする
 let g:hybrid_use_Xresources = 1
 
