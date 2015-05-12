@@ -132,6 +132,7 @@ function runjava () {
 ### Aliases ###
 alias r=rails
 alias vi=vim
+alias emacs=vim
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
