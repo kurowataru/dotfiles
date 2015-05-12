@@ -20,13 +20,17 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/tomorrow-theme'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'git://github.com/lukerandall/haskellmode-vim.git'
+
 
 NeoBundleCheck                  " 新しいPluginをvim起動時に自動でインストール
 filetype plugin indent on
 
 "" General
 syntax on
-set fileencoding=utf8           " 文字コードをUTF-8に設定
+set encoding=utf-8              " 文字コードをUTF-8に設定
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 set number                      " 行番号を表示
 set title                       " タイトルを表示
 set ruler                       " 右下に行・列番号を表示
@@ -46,13 +50,10 @@ augroup auto_comment_off
 augroup END
 " 括弧等を自動補完する
 ""inoremap { {}<LEFT>
-inoremap [ []<LEFT>
+inoremap [ []
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>
 inoremap {<Enter> {}<LEFT><CR><ESC><S-o>
-inoremap $ $$<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
 vnoremap { "zdi^V{<C-R>z}<ESC>
 vnoremap [ "zdi^V[<C-R>z]<ESC>
 vnoremap ( "zdi^V(<C-R>z)<ESC>
