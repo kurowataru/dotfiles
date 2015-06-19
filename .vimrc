@@ -20,17 +20,13 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/tomorrow-theme'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'git://github.com/lukerandall/haskellmode-vim.git'
-
 
 NeoBundleCheck                  " 新しいPluginをvim起動時に自動でインストール
 filetype plugin indent on
 
 "" General
 syntax on
-set encoding=utf-8              " 文字コードをUTF-8に設定
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
+set fileencoding=utf8           " 文字コードをUTF-8に設定
 set number                      " 行番号を表示
 set title                       " タイトルを表示
 set ruler                       " 右下に行・列番号を表示
@@ -43,6 +39,11 @@ set backspace=start,eol,indent  " Backspace による消去を有効にする
   " eol    : 開業を削除可能にする
   " indent : インデントを削除可能にする
 set whichwrap=b,s,[,],,~        " カーソルキーによる行末の移動を有効にする
+map <C-n> :cn<CR> " Ctrl + nでgtagsの次の検索結果へジャンプ
+map <C-p> :cp<CR> " Ctrl + pでgtagsの前の検索結果へジャンプ
+map <C-g> :Gtags " Ctrl + gで:Gtagsと入力
+map <C-i> :Gtags -f %<CR> " Ctrl + iで開いているファイルに定義されている関数の一覧を表示
+map <C-j> :GtagsCursor<CR> " Ctrl + jでカーソル位置の関数へジャンプ
 augroup auto_comment_off
   autocmd!
   autocmd BufEnter * setlocal formatoptions-=r
@@ -50,10 +51,12 @@ augroup auto_comment_off
 augroup END
 " 括弧等を自動補完する
 ""inoremap { {}<LEFT>
-inoremap [ []
+inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>
 inoremap {<Enter> {}<LEFT><CR><ESC><S-o>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
 vnoremap { "zdi^V{<C-R>z}<ESC>
 vnoremap [ "zdi^V[<C-R>z]<ESC>
 vnoremap ( "zdi^V(<C-R>z)<ESC>
@@ -66,6 +69,7 @@ set matchtime=2               " 括弧のハイライトを2秒にする
 set cursorline                " カレントラインをハイライト表示する
 set showcmd                   " 画面下部にコマンドを表示
 set wildmenu                  " コマンドラインモードの補完を有効にする
+"colorscheme Tomorrow-Night-Bright
 set background=dark           " 背景を暗くする
 let g:hybrid_use_Xresources = 1
 
