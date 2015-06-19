@@ -39,11 +39,16 @@ set backspace=start,eol,indent  " Backspace による消去を有効にする
   " eol    : 開業を削除可能にする
   " indent : インデントを削除可能にする
 set whichwrap=b,s,[,],,~        " カーソルキーによる行末の移動を有効にする
-map <C-n> :cn<CR> " Ctrl + nでgtagsの次の検索結果へジャンプ
-map <C-p> :cp<CR> " Ctrl + pでgtagsの前の検索結果へジャンプ
-map <C-g> :Gtags " Ctrl + gで:Gtagsと入力
-map <C-i> :Gtags -f %<CR> " Ctrl + iで開いているファイルに定義されている関数の一覧を表示
-map <C-j> :GtagsCursor<CR> " Ctrl + jでカーソル位置の関数へジャンプ
+" Ctrl + nでgtagsの次の検索結果へジャンプ
+map <C-n> :cn<CR>
+" Ctrl + pでgtagsの前の検索結果へジャンプ
+map <C-p> :cp<CR>
+" Ctrl + gで:Gtagsと入力
+map <C-g> :Gtags
+" Ctrl + iで開いているファイルに定義されている関数の一覧を表示
+map <C-i> :Gtags -f %<CR>
+" Ctrl + jでカーソル位置の関数へジャンプ
+map <C-j> :GtagsCursor<CR>
 augroup auto_comment_off
   autocmd!
   autocmd BufEnter * setlocal formatoptions-=r
