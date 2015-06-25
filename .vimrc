@@ -49,6 +49,8 @@ map <C-g> :Gtags
 map <C-i> :Gtags -f %<CR>
 " Ctrl + jでカーソル位置の関数へジャンプ
 map <C-j> :GtagsCursor<CR>
+" Ctrl + wで検索結果ウインドウを閉じる
+nnoremap <C-w> <C-w><C-w><C-w>q 
 augroup auto_comment_off
   autocmd!
   autocmd BufEnter * setlocal formatoptions-=r
@@ -67,8 +69,10 @@ vnoremap [ "zdi^V[<C-R>z]<ESC>
 vnoremap ( "zdi^V(<C-R>z)<ESC>
 vnoremap " "zdi^V"<C-R>z^V"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
+"ノーマルモードにおいてセミコロンをコロンに保管する
+nnoremap ; :
 " 括弧類を自動補完する_ここまで
-set clipboard=unnamed          " ヤンクした内容をクリップボードに保存する
+set clipboard=unnamedplus     " ヤンクした内容をクリップボードに保存する
 set showmatch                 " 対応する括弧をハイライト表示する
 set matchtime=2               " 括弧のハイライトを2秒にする
 set cursorline                " カレントラインをハイライト表示する
