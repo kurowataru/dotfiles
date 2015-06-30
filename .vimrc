@@ -8,7 +8,6 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 
 "let g:neobundle_default_git_protocol='https'
 
@@ -22,6 +21,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
 NeoBundleCheck                  " 新しいPluginをvim起動時に自動でインストール
+call neobundle#end()
 filetype plugin indent on
 
 "" General
