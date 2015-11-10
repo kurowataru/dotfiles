@@ -82,11 +82,8 @@ set wildmenu                  " コマンドラインモードの補完を有効
 set background=dark           " 背景を暗くする
 let g:hybrid_use_Xresources = 1
 
-"" Backup
-set backup
-set swapfile
-set backupdir=~/.vim/backup
-set directory=~/.vim/swap
+set nobackup " swapファイルを作成しない
+set noswapfile " backupファイルを作成しない
 
 "" Indent
 set cindent                     " C言語ライクなインデントを有効にする
