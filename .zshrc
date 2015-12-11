@@ -50,6 +50,9 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+# インクリメンタルからの検索
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
 
 # すべてのヒストリを表示する
 function history-all { history -E 1 }
@@ -147,6 +150,11 @@ alias -s java='runjava'
 alias su='su -s /bin/zsh'
 alias opendir='nautilus'
 alias openfile='gnome-open'
+alias dstat-full='dstat -tclmdrn'
+alias dstat-mem='dstat -tclm'
+alias dstat-cpu='dstat -tclr'
+alias dstat-net='dstat -tclnd'
+alias dstat-disk='dstat -tcldr'
 
 # cdコマンド実行後、lsを実行する
 function cd() {
@@ -172,3 +180,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=~/local/src/depot_tools:$PATH
+
+# OPAM configuration
+. /home/yosuke/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
