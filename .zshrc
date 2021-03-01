@@ -3,10 +3,17 @@
 # ------------------------------
 # General Settings
 # ------------------------------
-export EDITOR=vim        # エディタをvimに設定
-export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
+export EDITOR=vim               # エディタをvimに設定
+export LC_ALL=en_US.utf8        # 文字コードをUTF-8に設定
+export LANG=en_US.utf8          # 文字コードをUTF-8に設定
+export LANGUAGE=en_US.utf8      # 文字コードをUTF-8に設定
+export LC_CTYPE="en_US.utf8"    # 文字コードをUTF-8に設定
+export LC_NUMERIC="en_US.utf8"  # 文字コードをUTF-8に設定
+export LC_TIME="en_US.utf8"     # 文字コードをUTF-8に設定
+export LC_COLLATE="en_US.utf8"  # 文字コードをUTF-8に設定
+export LC_MONETARY="en_US.utf8" # 文字コードをUTF-8に設定
+export LC_MESSAGES="en_US.utf8" # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
-export LC_MESSAGES=C     # エラーメッセージを英語で表示
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 
 #bindkey -e               # キーバインドをemacsモードに設定
