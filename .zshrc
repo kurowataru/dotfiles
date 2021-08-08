@@ -4,15 +4,15 @@
 # General Settings
 # ------------------------------
 export EDITOR=vim               # エディタをvimに設定
-export LC_ALL=en_US.utf8        # 文字コードをUTF-8に設定
-export LANG=en_US.utf8          # 文字コードをUTF-8に設定
-export LANGUAGE=en_US.utf8      # 文字コードをUTF-8に設定
-export LC_CTYPE="en_US.utf8"    # 文字コードをUTF-8に設定
-export LC_NUMERIC="en_US.utf8"  # 文字コードをUTF-8に設定
-export LC_TIME="en_US.utf8"     # 文字コードをUTF-8に設定
-export LC_COLLATE="en_US.utf8"  # 文字コードをUTF-8に設定
-export LC_MONETARY="en_US.utf8" # 文字コードをUTF-8に設定
-export LC_MESSAGES="en_US.utf8" # 文字コードをUTF-8に設定
+export LC_ALL=ja_JP.utf8        # 文字コードをUTF-8に設定
+export LANG=ja_JP.utf8          # 文字コードをUTF-8に設定
+export LANGUAGE=ja_JP.utf8      # 文字コードをUTF-8に設定
+export LC_CTYPE="ja_JP.utf8"    # 文字コードをUTF-8に設定
+export LC_NUMERIC="ja_JP.utf8"  # 文字コードをUTF-8に設定
+export LC_TIME="ja_JP.utf8"     # 文字コードをUTF-8に設定
+export LC_COLLATE="ja_JP.utf8"  # 文字コードをUTF-8に設定
+export LC_MONETARY="ja_JP.utf8" # 文字コードをUTF-8に設定
+export LC_MESSAGES="ja_JP.utf8" # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 
@@ -175,9 +175,9 @@ function cd() {
 #PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 #
 # set PATHs for TeX Live 2013
-export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/:$MANPATH
-export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/info:$INFOPATH
-export PATH=/usr/local/texlive/2013/bin/x86_64-linux:$PATH
+# export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/:$MANPATH
+# export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/info:$INFOPATH
+# export PATH=/usr/local/texlive/2013/bin/x86_64-linux:$PATH
 
 # Other PATHs
 export PATH=~/local/bin:$PATH
@@ -189,4 +189,4 @@ export PATH=/usr/bin:$PATH
 export PATH=~/local/src/depot_tools:$PATH
 
 # OPAM configuration
-. /home/yosuke/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#. /home/yosuke/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
